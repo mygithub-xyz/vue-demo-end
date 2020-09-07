@@ -4,17 +4,20 @@ import com.nanjing.entity.Result;
 import com.nanjing.pojo.People;
 import com.nanjing.service.PeopleService;
 import com.nanjing.util.ExcelUtils;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
@@ -217,5 +220,25 @@ public class PeopleController {
             ex.printStackTrace();
         }
     }
+//pdf在线预览
+    @RequestMapping("/view")
+    public void er(HttpServletResponse response){
+        File file = new File("C:\\Users\\Admin\\Desktop\\发票.pdf");
+        if (file.exists()){
+            byte[] data = null;
+            try {
+                FileInputStream input = new FileInputStream(file);
+                data = new byte[input.available()];
+                input.read(data);
+                response.getOutputStream().write(data);
+                input.close();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
 
+        }else{
+            return;
+        }
+
+    }
 }

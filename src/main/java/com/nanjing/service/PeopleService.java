@@ -10,17 +10,10 @@ public interface PeopleService {
    public People userLogin(String pname,String countryid);
     //获取全部用户数据
     public List<People> getUserList();
-
     /**
      * 分页查询
      */
     public PageResult findPage(People people, int pageNo, int pageSize);
-    /* */
-
-    /**
-     * 根据条件分页查询
-     *//*
-    public PageResult findPage(TbBrand brand, int pageNo, int pageSize);*/
     //新增用户数据
     public void createUser(People people);
 

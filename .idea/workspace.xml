@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ecac9e2-290a-4e17-8263-de229fd99ef3" name="Default Changelist" comment="" />
+    <list default="true" id="1ecac9e2-290a-4e17-8263-de229fd99ef3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nanjing/task/DynamicScheduleTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nanjing/controller/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nanjing/controller/PeopleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nanjing/service/PeopleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nanjing/service/PeopleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/nanjing/controller/PeopleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nanjing/controller/PeopleController.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +50,21 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15240642" />
     <property name="project.structure.side.proportion" value="0.37118822" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RestServicesNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="Found 9 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+        </path>
+        <path>
+          <item name="Found 9 services " type="fcff1e1b:RestServiceStructure$RootNode" />
+          <item name="vue-demo-end" type="c588b436:RestServiceStructure$ProjectNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -89,7 +109,17 @@
       <workItem from="1598924378383" duration="3372000" />
       <workItem from="1598952290319" duration="3154000" />
       <workItem from="1599010904626" duration="5456000" />
-      <workItem from="1599039746178" duration="62000" />
+      <workItem from="1599039746178" duration="1051000" />
+      <workItem from="1599097748806" duration="13942000" />
+      <workItem from="1599125117179" duration="1770000" />
+      <workItem from="1599183919086" duration="6381000" />
+      <workItem from="1599209864007" duration="458000" />
+      <workItem from="1599210359062" duration="1579000" />
+      <workItem from="1599211979930" duration="115000" />
+      <workItem from="1599212153378" duration="476000" />
+      <workItem from="1599212666679" duration="1477000" />
+      <workItem from="1599443911002" duration="4781000" />
+      <workItem from="1599472486079" duration="2763000" />
     </task>
     <servers />
   </component>
@@ -101,7 +131,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
