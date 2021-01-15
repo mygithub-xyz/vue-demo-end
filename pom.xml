@@ -19,6 +19,43 @@
     </properties>
  <!--排除日志-->
     <dependencies>
+
+        <dependency>
+            <groupId>com.nanjing</groupId>
+            <artifactId>pdfsign</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/src/main/resources/lib/crypto.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.nanjing</groupId>
+            <artifactId>pdfsign</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/src/main/resources/lib/ISFJ_v2_0_139_7_BAISC_JDK14.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.nanjing</groupId>
+            <artifactId>pdfsign</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/src/main/resources/lib/netsign.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.nanjing</groupId>
+            <artifactId>pdfsign</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/src/main/resources/lib/netsignapi.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.nanjing</groupId>
+            <artifactId>pdfsign</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${project.basedir}/src/main/resources/lib/nsframework.jar</systemPath>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -102,6 +139,18 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+<!--xmreport-->
+        <dependency>
+            <groupId>org.mosmith</groupId>
+            <artifactId>web-report-engine</artifactId>
+            <version>1.1</version>
+        </dependency>
+<!--fastjson-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.51</version>
         </dependency>
     </dependencies>
     <!--maven-->

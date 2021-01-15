@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ecac9e2-290a-4e17-8263-de229fd99ef3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/nanjing/task/DynamicScheduleTask.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nanjing/controller/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nanjing/controller/PeopleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nanjing/service/PeopleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nanjing/service/PeopleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/nanjing/controller/PeopleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nanjing/controller/PeopleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vue-demo-end.iml" beforeDir="false" afterPath="$PROJECT_DIR$/vue-demo-end.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,11 +46,23 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../demo02/vue-demo" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15240642" />
     <property name="project.structure.side.proportion" value="0.37118822" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\idea-workspace\demo02_end\vue-demo-end\src\main\resources\static" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\idea-workspace\demo02_end\vue-demo-end\src\main\resources\static" />
+      <recent name="D:\idea-workspace\demo02_end\vue-demo-end\src\main\resources" />
+      <recent name="D:\idea-workspace\demo02_end\vue-demo-end\src\main\resources\lib" />
+      <recent name="D:\idea-workspace\demo02_end\vue-demo-end\src\main\java\com\nanjing\util" />
+    </key>
   </component>
   <component name="RestServicesNavigator">
     <treeState>
@@ -120,6 +132,14 @@
       <workItem from="1599212666679" duration="1477000" />
       <workItem from="1599443911002" duration="4781000" />
       <workItem from="1599472486079" duration="2763000" />
+      <workItem from="1599529755921" duration="904000" />
+      <workItem from="1599552040021" duration="14000" />
+      <workItem from="1602468747736" duration="6219000" />
+      <workItem from="1602486922275" duration="1486000" />
+      <workItem from="1603877043699" duration="1076000" />
+      <workItem from="1603936217190" duration="5735000" />
+      <workItem from="1606202098975" duration="1959000" />
+      <workItem from="1606383626210" duration="600000" />
     </task>
     <servers />
   </component>

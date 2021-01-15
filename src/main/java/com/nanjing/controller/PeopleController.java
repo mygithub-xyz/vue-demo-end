@@ -1,27 +1,35 @@
 package com.nanjing.controller;
+import cn.com.infosec.netsign.agent.NetSignAgent;
+import cn.com.infosec.netsign.agent.NetSignResult;
+import cn.com.infosec.netsign.agent.exception.NetSignAgentException;
+import cn.com.infosec.netsign.agent.exception.ServerProcessException;
+import cn.com.infosec.netsign.base.PDFParameters;
+import cn.com.infosec.netsign.base.PDFVerifyResult;
+import com.alibaba.fastjson.JSONObject;
+import com.nanjing.entity.CountOrder;
 import com.nanjing.entity.PageResult;
+import com.nanjing.entity.Program;
 import com.nanjing.entity.Result;
 import com.nanjing.pojo.People;
 import com.nanjing.service.PeopleService;
 import com.nanjing.util.ExcelUtils;
 
+import com.nanjing.util.NumberToCNUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.mosmith.tools.report.engine.output.ReportHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @Api(tags = "管理相关接口")
@@ -221,9 +229,10 @@ public class PeopleController {
         }
     }
 //pdf在线预览
-    @RequestMapping("/view")
+    @GetMapping("/view")
+    @ApiOperation("pdf预览")
     public void er(HttpServletResponse response){
-        File file = new File("C:\\Users\\Admin\\Desktop\\发票.pdf");
+        File file = new File("C:\\Users\\Admin\\Desktop\\图片\\3.gif");
         if (file.exists()){
             byte[] data = null;
             try {
@@ -235,10 +244,130 @@ public class PeopleController {
             } catch (Exception e) {
                 System.out.println(e);
             }
-
         }else{
             return;
         }
-
     }
+
+    @RequestMapping(value = "/pdf",method = RequestMethod.GET)
+    @ApiOperation("pdf生成")
+    @ResponseBody
+    public void getPdf(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Reader templateDataReader=new FileReader(new File("D:\\idea-workspace\\pdfsign\\src\\main\\resources\\static\\11.xmreport"));
+        CountOrder countOrder =new CountOrder();
+        countOrder.setCoName("李白");
+        countOrder.setCreateTime(format.format(new Date()));
+        countOrder.setEndTime(format.format(new Date()));
+        countOrder.setAcctfileno("0000000213124832");
+        countOrder.setDate(format.format(new Date()));
+        countOrder.setMaker("猪八戒");
+        countOrder.setChecker("孙悟空");
+        List<Program> list=new ArrayList();
+        Program program1 =new Program();
+        program1.setAmt(new BigDecimal(100).setScale(2));
+        program1.setPro("住院费");
+        Program program2 =new Program();
+        program2.setAmt(new BigDecimal(200).setScale(2));
+        program2.setPro("挂号费");
+        Program program3 =new Program();
+        program3.setAmt(new BigDecimal(300).setScale(2));
+        program3.setPro("x光线费");
+        list.add(program1);
+        list.add(program2);
+        list.add(program3);
+        BigDecimal sum =new BigDecimal(0.00);
+        for (Program o : list) {
+            sum=sum.add(o.getAmt());
+        }
+        Map<String,List> map =new HashMap<>();
+        map.put("program",list);
+        countOrder.setProgram(JSONObject.toJSON(map));
+        System.out.println(sum.setScale(2));
+        countOrder.setCountMoney(sum.setScale(2));
+        countOrder.setCountAmt(NumberToCNUtils.number2CNMontrayUnit(countOrder.getCountMoney()));
+        Map<String,Object> previewOptions=new HashMap<String, Object>(); // 配置
+        ReportHelper reportHelper=new ReportHelper();
+        String contentType;
+        File file=reportHelper.toPdf(templateDataReader,countOrder, previewOptions);
+        try {
+            FileInputStream in = new FileInputStream(file);
+            NetSignAgent.initialize();
+            byte[] bs = new byte[in.available()];
+            in.read(bs);
+// 设置签名参数.
+            PDFParameters para = new PDFParameters();
+// 设置pdf文件.
+            para.setPdf(bs);
+// 设置pdf文件密码.
+            para.setOwnerPassword("11111111".getBytes());
+            in = new FileInputStream("D:\\idea-workspace\\pdfsign\\src\\main\\resources\\static\\1.jpg");
+            bs = new byte[in.available()];
+            in.read(bs);
+//直接量定位签名.
+            para.addRectangle2Sign(100, 450, 200, 550, 1, "fieldName_d", "1.png", "0333001000024109");
+            //  para.addImage(bs, 90, 90, 1, 80, 80);
+            NetSignResult result = NetSignAgent.pdfSignature(para);
+//签名成功，获取签名值
+            bs = result.getByteArrayResult(NetSignResult.SIGN_TEXT);
+            httpServletResponse.reset();
+            httpServletResponse.setContentType("application/pdf");
+            httpServletResponse.setCharacterEncoding("utf-8");
+            httpServletResponse.setHeader("Content-disposition", "fileName=" + "123.pdf");
+            check(bs);
+            OutputStream os = httpServletResponse.getOutputStream();
+            os.write(bs);
+            os.flush();
+        }catch (Exception e){
+            e.printStackTrace();
+        } finally {
+            if(file!=null) {
+                boolean deleted=file.delete();
+            }
+        }
+    }
+    public void check(byte[] bs){
+        //  FileInputStream in = null;
+        SimpleDateFormat format = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+        Date date = new Date();
+        try {
+            //  in = new FileInputStream( "1.pdf" );
+            //   byte[] bs = new byte[ in.available() ];
+            //   in.read( bs );
+            // 设置pdf签名参数
+            PDFParameters para = new PDFParameters();
+            // 设置pdf文件内容
+            para.setPdf( bs );
+            ArrayList results = NetSignAgent.pdfVerify( para , true );
+            for( int i = 0 , size = results.size() ; i < size ; i++ ) {
+                PDFVerifyResult pvr = ( PDFVerifyResult ) results.get( i );
+                System.out.println( "签名区域名称:" + pvr.getFieldName() );
+                if( pvr.getReturnCode() != 1 ) {
+                    System.out.println( "验签名失败：" + pvr.getReturnCode() );
+                } else {
+                    date.setTime( pvr.getNotBefore()*1000 );
+                    String notBefore = format.format( date );
+                    date.setTime( pvr.getNotAfter()*1000 );
+                    String notAfter = format.format( date );
+                    System.out.println( "签名证书主题:" + pvr.getSubject() );
+                    System.out.println( "签名证书颁发者主题:" + pvr.getIssuerSubject() );
+                    System.out.println( "签名证书序列号:" + pvr.getSn().toString( 16 ) );
+                    System.out.println( "签名证书有效期:从" + notBefore + " 到 " + notAfter );
+                    System.out.println( "签名证书:" + pvr.getB64cert() );
+                }
+            }
+        } catch ( NetSignAgentException e ) {
+            e.printStackTrace();
+            System.out.println( "errorCode:" + e.getErrorCode() );
+            System.out.println( "errorMsg:" + e.getMessage() );
+        } catch ( ServerProcessException e ) {
+            e.printStackTrace();
+            System.out.println( "errorCode:" + e.getErrorCode() );
+            System.out.println( "errorMsg:" + e.getMessage() );
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
